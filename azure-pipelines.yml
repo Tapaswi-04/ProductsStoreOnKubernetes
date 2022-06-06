@@ -25,7 +25,7 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        containerRegistry: 'DockerHubConnnection'
+        containerRegistry: 'acr'
         repository: 'houssemdocker/products-web'
         command: 'build'
         Dockerfile: '**/Dockerfile'
@@ -34,7 +34,7 @@ stages:
     - task: Docker@2
       displayName: Push an image
       inputs:
-        containerRegistry: 'DockerHubConnnection'
+        containerRegistry: 'acr'
         repository: 'houssemdocker/products-web'
         command: 'push'
         Dockerfile: '**/Dockerfile'
