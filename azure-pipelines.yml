@@ -25,8 +25,8 @@ stages:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        containerRegistry: 'acr'
-        repository: 'houssemdocker/products-web'
+        containerRegistry: 'myappreg'
+        repository: 'myappreg'
         command: 'build'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
@@ -34,8 +34,8 @@ stages:
     - task: Docker@2
       displayName: Push an image
       inputs:
-        containerRegistry: 'acr'
-        repository: 'houssemdocker/products-web'
+        containerRegistry: 'myappreg'
+        repository: 'myappreg'
         command: 'push'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
@@ -57,9 +57,9 @@ stages:
     - task: HelmDeploy@0
       inputs:
         connectionType: 'Azure Resource Manager'
-        azureSubscription: 'azure resource manager'
-        azureResourceGroup: 'Deploymentrg'
-        kubernetesCluster: 'deployment'
+        azureSubscription: 'arm'
+        azureResourceGroup: 'rg'
+        kubernetesCluster: 'Myapp'
         command: 'upgrade'
         chartType: 'FilePath'
         chartPath: 'charts/productsstore'
